@@ -1,0 +1,8 @@
+line=`head -n 1 /home/vijay/code/Scripts/last_comic`
+next=`ls /home/vijay/Calvin_and_Hobbes/All | grep $line -A1 | tail -n 1`
+echo $next > /home/vijay/code/Scripts/last_comic
+next_num=`grep -o '[0-9]*' /home/vijay/code/Scripts/last_comic`
+echo $next_num > /home/vijay/code/Scripts/last_comic
+loc="/home/vijay/Calvin_and_Hobbes/All/$next"
+display $loc
+echo $loc
