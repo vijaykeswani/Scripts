@@ -1,0 +1,19 @@
+#!/bin/bash
+a=0
+while [ $a -eq 0 ]; do
+    export all_proxy="";
+    export ALL_PROXY="";
+    res=$(curl --write-out %{http_code} --silent --output /dev/null http://www.accuweather.com)
+    if ! [ $res -eq 0 ]; then #if ping exits nonzero...
+        curl -f -s http://www.accuweather.com/en/in/kanpur/206679/weather-forecast/206679 > temp.txt
+        /home/vijay/code/Scripts/weather_note/a.out < temp.txt > temp2.txt
+        notify-send "$(cat temp2.txt)"
+        rm temp*.txt
+        a=1
+    else
+        echo "here"
+    fi
+    if [ $a -eq 0 ]; then
+        sleep 300
+    fi
+done
