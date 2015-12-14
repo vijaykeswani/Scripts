@@ -1,0 +1,12 @@
+if test -z "$1"
+then 
+	curl -S -s http://timesofindia.indiatimes.com/home/headlines > temp3.txt
+	/home/vijay/code/Scripts/news/temp < temp3.txt >output
+	python /home/vijay/code/Scripts/news/divide.py
+else
+	echo ""
+	wget -q --user-agent "drupal (+http://drupal.org/)" "http://news.google.com/news?pz=1&hl=ar&q=$1&cf=all&output=rss"
+        mv news?* out
+        /home/vijay/code/Scripts/news/temp2 < out
+fi
+echo ""
